@@ -1,0 +1,19 @@
+/**
+ *
+ * Folha de Estilo Principal
+ * Esta folha carregará estilos secundários da aplicação
+ *
+ */
+
+// @import "settings/all"; 
+ 
+// /*----------  Estilos do Tema  ----------*/
+// @import "utils/all";
+// @import "base/typography/all";
+// @import "media/all";
+
+.teste{
+  display: flex;
+  align-items: center;
+  transform: translateY(1px);
+}

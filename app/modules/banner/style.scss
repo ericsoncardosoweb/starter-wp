@@ -1,0 +1,187 @@
+/*======================================
+=            WC - MINI-CART            =
+======================================*/
+@import "../../assets/scss/settings/all";
+
+.banner{
+ 	position: relative;
+
+ 	@include e('wrap') {
+		position: relative;
+		width: 100%;
+		height: auto;
+
+		@include min-screen(1000px){
+			min-height: 800px;
+			display: flex;
+			align-items: center;
+		}
+
+ 	}//element
+
+	@include e('item') {
+		overflow: hidden;
+
+		.bg-cover{
+			z-index: 1;
+		}
+
+		.link-absolute{
+			z-index: 2;
+		}
+
+
+		@include e('content') {
+			position: relative;
+			z-index: 3;
+			width: 100%;
+			max-width: 660px;
+			padding: 150px 20px;
+			margin: 0 auto;
+			text-align: center;
+			color: #FFF;
+
+			@include max-screen(800px) {
+				padding: 70px 20px 110px;
+			}
+		}
+	}//element
+
+ 	@include e('title') {
+		@include fontsize(3.2,4);
+		text-transform: none;
+		font-weight: 600;
+		margin-bottom: 40px;
+
+		@include min-screen(800px) {
+			@include fontsize(4.8,5.4);
+		}
+
+		a{
+			font-weight: inherit;
+			line-height: inherit;
+		}
+
+		@include linkreset();
+ 	}//element
+
+ 	@include e('button') {
+	  background-color: $color-secondary;
+	  font-size: 14px;
+	  line-height: 1;
+	  text-transform: uppercase;
+	  font-weight: 600;
+	  text-align: center;
+	  padding: 25px 45px;
+	  border-radius: 40px;
+	  color: #FFF;
+	  display: inline-block;
+	  transition: all 0.5s;
+	  overflow: hidden;
+	  position: relative;
+
+	  @include max-screen(800px) {
+	  	padding: 15px 25px;
+	  }
+
+	  &, &:hover, &:active, &:visited{
+	  	color: #FFF;
+	  }
+
+	  @include min-screen(800px){
+	  	min-width: 370px;
+	  }
+
+	  &:hover{
+	  	background: darken($color-secondary, 10%);
+	  }
+
+ 	}
+
+ 	p{
+		@include fontsize(1.8,3);
+		margin-bottom: 50px;
+ 	}
+
+ 	.slick-dots{
+ 		position: absolute;
+ 		bottom: 30px;
+ 		left: 50%;
+ 		transform: translateX(-50%);
+ 		z-index: 5;
+
+ 		li{
+ 			display: inline-block;;
+ 			width: 14px;
+ 			height: 14px;
+ 			border-radius: 50%;
+ 			font-size: 0;
+ 			opacity: 0.5;
+ 			background: #FFF;
+ 			border: solid 1px #FFF;
+ 			margin: 0 4px;
+
+ 			&:hover{
+ 				opacity: 1;
+ 			}
+
+ 			&.slick-active{
+ 				opacity: 1;
+ 				background: #fff;
+ 			}
+
+ 		}
+ 	}
+
+
+ 	/*----------  Banner Double  ----------*/
+ 	&.banner--double{
+ 		padding-top: 25px;
+ 		padding-bottom: 25px;
+
+ 		.banner__row{
+ 			display: flex;
+ 		}
+
+ 		.banner__item{
+			&.banner__item--small{
+				-ms-flex: 0 0 auto;
+		    flex: 0 0 auto;
+		    width: auto;
+				margin-right: 25px;
+				min-width: 340px;
+			}
+
+			&.banner__item--large{
+				-ms-flex-preferred-size: 0;
+				flex-basis: 0;
+				-webkit-box-flex: 1;
+				-ms-flex-positive: 1;
+				flex-grow: 1;
+				max-width: 100%;
+			}
+ 		}
+
+
+		.slide{
+			.item{
+				min-height: 355px;
+				position: relative;
+			}
+
+			img{
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+		}//slide
+
+
+		.slick-dots{
+			bottom: 0;
+		}
+ 	}//&.banner-double
+
+
+
+ }//.banner

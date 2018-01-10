@@ -1,0 +1,106 @@
+<?php 
+if(function_exists("register_field_group"))
+{
+	register_field_group(array (
+		'id' => 'acf_opcoes-da-pagina',
+		'title' => 'Opções da Página',
+		'fields' => array (
+			array (
+				'key' => 'field_59ef2a9b2a7b6',
+				'label' => 'Opções',
+				'name' => '',
+				'type' => 'tab',
+			),
+			array (
+				'key' => 'field_5a02cd7036b8f',
+				'label' => 'ID',
+				'name' => 'id',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_5a02cd6236b8e',
+				'label' => 'Class',
+				'name' => 'class',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_59ef29cb2a7b4',
+				'label' => 'Menu Desktop',
+				'name' => 'menu_desktop',
+				'type' => 'text',
+				'instructions' => 'Insira o slug do menu',
+				'required' => 1,
+				'default_value' => 'header-menu',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_59ef2a792a7b5',
+				'label' => 'Menu Mobile',
+				'name' => 'menu_mobile',
+				'type' => 'text',
+				'instructions' => 'Insira o slug do menu',
+				'required' => 1,
+				'default_value' => 'mobile-menu',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_59ef2ad92a7b7',
+				'label' => 'Cores',
+				'name' => '',
+				'type' => 'tab',
+			),
+			array (
+				'key' => 'field_59ef2ae72a7b8',
+				'label' => 'Cor primária',
+				'name' => 'cor_primaria',
+				'type' => 'color_picker',
+				'default_value' => '#55c2a4',
+			),
+			array (
+				'key' => 'field_59ef2b1b2a7b9',
+				'label' => 'Cor secundária',
+				'name' => 'cor_secondaria',
+				'type' => 'color_picker',
+				'default_value' => '#734595',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'page_template',
+					'operator' => '==',
+					'value' => 'default',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'default',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+}
