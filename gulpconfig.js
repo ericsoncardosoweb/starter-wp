@@ -4,8 +4,9 @@
  *
  */
 
-const src = './app/';
-const dist = './dist/wp-content/themes/agatha-wc/';
+const src      = './app/';
+const dist     = './dist/wp-content/themes/agatha-wc/';
+const fontName = 'Icons';
 
 module.exports = {
   paths: {
@@ -48,5 +49,67 @@ module.exports = {
       "Opera >= 12",
       "Safari >= 6"
     ]
+  },
+  image: {
+    src: src + 'assets/images/**/**/*.{jpg,jpeg,png,gif,svg}',
+    dist: dist + 'assets/images/',
+    imagemin: {
+      progressive: true,
+      optimizationLevel: 3, // 0-7 low-high
+      interlaced: true,
+      svgoPlugins: [{removeViewBox: false}]
+    }
+  },
+  svg: {
+    src: src + 'assets/symbols/**/*.svg',
+    dist: dist + 'assets/',
+    symbols: {
+      mode: "symbols",
+      common: "svg",
+      svgId: "svg-%f"
+    }
+  },
+  fonticon: {
+    src: src + 'assets/fonts/icons/**/*.svg',
+    dist: dist + 'assets/fonts/icons',
+    iconFontCss: {
+      fontName: fontName,
+      targetPath: '../../../../app/assets/scss/media/_icons.scss', //baseado no caminho final para escrever no arquivo de desenvolvimento
+      fontPath: 'fonts/icons'
+    },
+    iconFont: {
+      fontName: fontName
+    },
+    iconFontHtml: {
+      fontName: fontName,
+      path: src + 'assets/scss/media/iconfonts.html',
+      targetPath: 'fonticons.html',
+    }
+  },
+  compress: {
+    filename: 'pack.zip',
+    src: [
+      '**/*',
+      '!**/*.map',
+      '!todo',
+      '!.todo',
+      '!pack.zip',
+      '!bs-config.js',
+      '!.vscode',
+      '!node_modules/**',
+      '!.gitignore',
+    ],  
+    dest: './'
+  },
+  clean: [
+    '**/.DS_Store',
+    './assets/js/**/*.min.js',
+    '**/*.map',
+    '**/*.min.css',
+    'assets/fonts/**/**/*'
+  ],
+  html: {
+    src: src + '**/**/**/**/*.html',
+    dist: dist
   }
 }

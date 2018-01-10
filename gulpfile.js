@@ -33,18 +33,43 @@ gulp.task('serve', ['browser-sync']);
 /*=============================
 =            TASKS            =
 =============================*/
-	// gulp.task('images', tasks.images);
-	// gulp.task('svg', tasks.svg);
-	// gulp.task('font_icon', tasks.font_icon);
+	gulp.task('media:image', tasks.media.image);
+	gulp.task('media:symbol', tasks.media.symbol);
+	gulp.task('media:fonticon', tasks.media.fonticon);
 
-	// gulp.task('html:default', tasks.html.default);
+	gulp.task('html:default', tasks.html.default);
+	gulp.task('html:php', tasks.html.php);
+	gulp.task('html:extras', tasks.html.extras);
 
 	gulp.task('scripts:default', tasks.scripts.default);
 	gulp.task('scripts:concat', tasks.scripts.concat);
 	gulp.task('scripts:minify', tasks.scripts.minify);
 
 	gulp.task('styles:default', tasks.styles.default);
+	gulp.task('styles:concat', tasks.styles.concat);
 	gulp.task('styles:minify', tasks.styles.minify);
+
+
+
+	/**
+	 * Task: `compress`
+	 * 
+	 * Compress all theme files to final zip file.
+	 */
+	gulp.task('compress', function(){
+		return gulp.src(config.compress.src)
+			.pipe(zip(config.compress.filename)) // Zip compress files.
+			.pipe(gulp.dest(config.compress.dest));
+	});
+
+	/**
+	 * Task: `clean`
+	 * 
+	 * Clean specific build files of your theme/plugin.
+	 */
+	gulp.task('clean', function(){
+	  return del(config.clean);
+	});
 /*=====  End of TASKS  ======*/
 
 /*==========================================
@@ -56,42 +81,48 @@ gulp.task('serve', ['browser-sync']);
 
 		browserSync.init(config.browsersync)
 
-		const stylesstasks = ['styles:default', 'styles:minify'];
-		gulp.watch(config.paths.assets+'scss/**/**/**/*.scss', []);
-		gulp.watch(config.paths.src+'components/**/**/**/*.scss', ['styles:default', 'styles:minify']);
-		gulp.watch(config.paths.src+'modules/**/**/**/*.scss', ['styles:default', 'styles:minify']);
+		const stylesstasks = ['styles:default', 'styles:minify', 'styles:concat'];
+		gulp.watch(config.paths.assets+'scss/**/**/**/*.scss', stylesstasks);
+		gulp.watch(config.paths.src+'components/**/**/**/*.scss', stylesstasks);
+		gulp.watch(config.paths.src+'modules/**/**/**/*.scss', stylesstasks);
 		
 		const scriptstasks = ['scripts:default', 'scripts:minify', 'scripts:concat'];
 		gulp.watch(config.paths.src+'assets/js/**/**/**/*.js', scriptstasks);
 		gulp.watch(config.paths.src+'components/**/**/**/*.js', scriptstasks);
 		gulp.watch(config.paths.src+'modules/**/**/**/*.js', scriptstasks);
+		
+		const htmltasks = ['html:default', 'html:php', 'html:extras'];
+		gulp.watch([
+			config.paths.src+'**/**/**/**/*.php',
+			config.paths.src+'**/**/**/**/*.html',
+			config.paths.src+'**/**/**/**/*.tpl'
+			], htmltasks);
 
 	});
-
-	// gulp.task('Watch HTML', ['html:default'], function() {
-	// 	var server = livereload();
-	// 	livereload.listen();
-
-	// 	gulp.watch(app.src+'**/**/*.html', ['html:default']);
-
-	// });
 /*=====  End of WATCH - Task cicle  ======*/
 
 
 /*----------  Run task default  ----------*/
 // develop
 gulp.task('default', [
+	'media:image',
+	'media:fonticon',
+	'media:symbol',
 	'watch'
 ]);
 
 // server
 gulp.task('server', [
-	'images',
-	'svg',
-	'font_icon',
-	'plugins:style',
-	'plugins:script',
-	'Watch Style',
-	'Watch Script',
-	'Watch HTML'
+	'media:image',
+	'media:fonticon',
+	'media:symbol',
+	'html:default',
+	'html:php',
+	'html:extras',
+	'styles:default', 
+	'styles:minify', 
+	'styles:concat',
+	'scripts:default', 
+	'scripts:minify', 
+	'scripts:concat'
 ]);

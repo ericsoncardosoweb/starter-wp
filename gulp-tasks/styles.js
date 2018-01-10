@@ -62,6 +62,7 @@ module.exports = {
       zindex: false
     }))
     .pipe(sourcemaps.write())
+    .pipe(concat('all.min.js'))
     .pipe( lineec() )
     .pipe(gulp.dest(config.paths.style.dist))
     .pipe( browserSync.stream() )
